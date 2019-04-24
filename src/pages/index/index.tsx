@@ -68,6 +68,10 @@ class Index extends Component {
     })
   }
 
+  toMovable = () => {
+    navigateTo({url:'../movable/index'})
+  }
+
   render () {
     const { counterStore: { counter } } = this.props
     return (
@@ -77,6 +81,8 @@ class Index extends Component {
         <Button onClick={this.incrementAsync}>Add Async</Button>
         <Text>{counter}</Text>
         <Button onClick={this.navClick}>跳转Map</Button>
+
+        <Button onClick={this.toMovable}>跳转到Movable-component Demo</Button>
       </View>
     )
   }

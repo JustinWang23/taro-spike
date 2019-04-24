@@ -25,6 +25,7 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/map/index',
+      'pages/movable/index',
     ],
     // 分包处理
     // subPackages: [
