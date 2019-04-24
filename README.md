@@ -21,7 +21,7 @@ a project to spike taro and we-app
 
 ### 小程序相关
 
-* [ ] 账号申请流程（材料，周期）
+* [x] [账号申请流程（材料，周期）](./docs/weapp-related.md)
 * [ ] 2M大小限制（分包机制）
 
 ### Components(Minor Priority)
