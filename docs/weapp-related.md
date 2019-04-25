@@ -28,4 +28,5 @@
 ## 参考
 
 - [账号申请](https://developers.weixin.qq.com/miniprogram/introduction/#%E4%BA%A7%E5%93%81%E5%AE%9A%E4%BD%8D%E5%8F%8A%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D)
+- [服务号申请](https://kf.qq.com/faq/120911VrYVrA151013MfYvYV.html)
 - [小程序发布](https://developers.weixin.qq.com/miniprogram/dev/quickstart/basic/role.html#%E9%A2%84%E8%A7%88)

@@ -114,7 +114,7 @@ class MapDemo extends Component {
       location: `${this.state.destination.longitude},${this.state.destination.latitude}`,
       querytypes: '011100',
       iconPath: 'http://ku.90sjimg.com/element_pic/17/12/21/aae20cd047335454aac914d139acaf9b.jpg',
-      // iconPathSelected: 'http://ku.90sjimg.com/element_pic/17/12/21/aae20cd047335454aac914d139acaf9b.jpg',
+      iconPathSelected: 'http://ku.90sjimg.com/element_pic/17/12/21/aae20cd047335454aac914d139acaf9b.jpg',
       success: (data) => {
         console.log(data)
         this.setState({

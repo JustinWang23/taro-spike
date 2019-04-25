@@ -6,8 +6,8 @@ a project to spike taro and we-app
 * [x] 连线
 * [x] 标记
 * [x] 导航
-* [ ] POI（包含优先级处理）
-* [x] 点击地址Text跳转Map
+* [x] POI
+* [x] [流量相关](./docs/map.md)
 
 ### Edit
 
