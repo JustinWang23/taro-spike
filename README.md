@@ -3,12 +3,11 @@ a project to spike taro and we-app
 
 ### Map
 
-* [ ] 连线
-* [ ] 标记
-* [ ] 悬浮层
-* [ ] 导航
+* [x] 连线
+* [x] 标记
+* [x] 导航
 * [ ] POI（包含优先级处理）
-* [ ] 点击地址Text跳转Map
+* [x] 点击地址Text跳转Map
 
 ### Edit
 
@@ -22,10 +21,11 @@ a project to spike taro and we-app
 ### 小程序相关
 
 * [x] [账号申请流程（材料，周期）](./docs/weapp-related.md)
-* [ ] 2M大小限制（分包机制）
+* [x] [2M大小限制（分包机制）](https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages.html)
 
 ### Components(Minor Priority)
 
-* [ ] Rate组件
-* [ ] Timeline组件
+* [x] [Rate组件](https://taro-ui.aotu.io/#/docs/timeline)
+* [x] [Timeline组件](https://taro-ui.aotu.io/#/docs/rate)
+* [ ] 悬浮层
 * [ ] 不规则导航栏

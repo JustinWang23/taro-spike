@@ -1,5 +1,5 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Map } from "@tarojs/components"
+import { View, Button, Map, CoverView } from "@tarojs/components"
 
 import './index.scss'
 
@@ -7,6 +7,9 @@ var amapFile = require('../../libs/amap/amap-wx.js')
 var myAmapFun = new amapFile.AMapWX({ key: '8d4b5ef1c666301c6bf92a9a624fda43' })
 
 type PageState = {
+  origin: any
+  destination: any
+  waypoints: any[]
   markers: any[]
   polyline: any[]
 }
@@ -23,42 +26,63 @@ class MapDemo extends Component {
     super(props)
 
     this.state = {
-      markers: [{
+      origin: {
         longitude: 113.324520,
         latitude: 23.099994,
-        iconPath: 'https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png',
-        width: 40,
-        height: 40,
-      },{
-        longitude: 113.327420,
-        latitude: 23.099999,
-        iconPath: 'https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png',
-        width: 40,
-        height: 40,
-      },{
+      },
+      destination: {
         longitude: 113.327420,
         latitude: 23.104009,
-        iconPath: 'https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png',
-        width: 40,
-        height: 40,
+      },
+      waypoints: [{
+        longitude: 113.327420,
+        latitude: 23.099999,
       }],
-      polyline: []
+      markers: [],
+      polyline: [],
     }
   }
 
   componentDidMount() {
-    // Taro.openLocation({
-    //   latitude: 23.104009,
-    //   longitude: 113.327420,
-    //   scale: 18
-    // })
+    this.getMarkers()
+    this.getRoute()
+    this.getPOI()
+  }
 
+  getMarkers = () => {
+    let markers: any[] = []
+    markers.push({
+      ...this.state.origin,
+      iconPath: 'https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png',
+      width: 40,
+      height: 40,
+    })
+    this.state.waypoints.forEach(waypoint => {
+      markers.push({
+        ...waypoint,
+        iconPath: 'https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png',
+        width: 40,
+        height: 40,
+      })
+    })
+    markers.push({
+      ...this.state.destination,
+      iconPath: 'https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png',
+      width: 40,
+      height: 40,
+    })
+    this.setState({
+      markers,
+    })
+  }
+
+  getRoute = () => {
     myAmapFun.getDrivingRoute({
-      origin: '113.324520,23.099994',
-      destination: '113.327420,23.104009',
-      waypoints: '113.327420,23.099999',
+      origin: `${this.state.origin.longitude},${this.state.origin.latitude}`,
+      destination: `${this.state.destination.longitude},${this.state.destination.latitude}`,
+      waypoints: '113.327420,23.099999;',
       success: (data) => {
-        var points:{longitude: any, latitude: any}[] = [];
+        var points: { longitude: any, latitude: any }[] = [];
         if (data.paths && data.paths[0] && data.paths[0].steps) {
           var steps = data.paths[0].steps;
           for (var i = 0; i < steps.length; i++) {
@@ -80,8 +104,37 @@ class MapDemo extends Component {
         })
       },
       fail: (info) => {
-
+        console.log(info)
       }
+    })
+  }
+
+  getPOI = () => {
+    myAmapFun.getPoiAround({
+      location: `${this.state.destination.longitude},${this.state.destination.latitude}`,
+      querytypes: '011100',
+      iconPath: 'http://ku.90sjimg.com/element_pic/17/12/21/aae20cd047335454aac914d139acaf9b.jpg',
+      // iconPathSelected: 'http://ku.90sjimg.com/element_pic/17/12/21/aae20cd047335454aac914d139acaf9b.jpg',
+      success: (data) => {
+        console.log(data)
+        this.setState({
+          markers: [
+            ...this.state.markers,
+            ...data.markers,
+          ]
+        })
+      },
+      fail: (info) => {
+        console.log(info)
+      }
+    })
+  }
+
+  startNav = () => {
+    Taro.openLocation({
+      longitude: this.state.destination.longitude,
+      latitude: this.state.destination.latitude,
+      scale: 28
     })
   }
 
@@ -93,8 +146,10 @@ class MapDemo extends Component {
           latitude={23.099994}
           markers={this.state.markers}
           polyline={this.state.polyline}
-        >
-        </Map>
+        />
+        <CoverView className="nav-container">
+          <Button className="nav-btn" onClick={this.startNav}>开始导航</Button>
+        </CoverView>
       </View>
     )
   }
