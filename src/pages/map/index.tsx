@@ -1,5 +1,5 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Map, CoverView } from "@tarojs/components"
+import { View, Button, Map, CoverView, Image } from "@tarojs/components"
 
 import './index.scss'
 
@@ -56,6 +56,11 @@ class MapDemo extends Component {
       iconPath: 'https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png',
       width: 40,
       height: 40,
+      callout: {
+        content: '腾讯',
+        borderRadius: 10,
+        padding: 10,
+      }
     })
     this.state.waypoints.forEach(waypoint => {
       markers.push({
@@ -148,6 +153,7 @@ class MapDemo extends Component {
           polyline={this.state.polyline}
         />
         <CoverView className="nav-container">
+          {/* <Image src="http://store.is.autonavi.com/showpic/46a10d9265195e2dd54b5266c46e63d4"></Image> */}
           <Button className="nav-btn" onClick={this.startNav}>开始导航</Button>
         </CoverView>
       </View>
