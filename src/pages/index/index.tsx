@@ -76,11 +76,11 @@ class Index extends Component {
     const { counterStore: { counter } } = this.props
     return (
       <View className='index'>
-        <Button onClick={this.increment}>+</Button>
+        {/* <Button onClick={this.increment}>+</Button>
         <Button onClick={this.decrement}>-</Button>
         <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
-        <Button onClick={this.navClick}>跳转Map</Button>
+        <Text>{counter}</Text> */}
+        <Button onClick={this.navClick}>跳转到Map Demo</Button>
 
         <Button onClick={this.toMovable}>跳转到Movable-component Demo</Button>
       </View>
