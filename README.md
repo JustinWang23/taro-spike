@@ -12,7 +12,7 @@ a project to spike taro and we-app
 
 ### Edit
 
-* [ ] 拖拽编辑
+* [x] 拖拽编辑
 
 ### Message
 
