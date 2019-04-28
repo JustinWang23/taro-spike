@@ -33,14 +33,14 @@ class Movable extends Component {
     let offY = 0
     let { list } = this.state
     for (let i = 0; i < list.length; i++) {
-      if (y >= offY && y < offY + 60) {
+      if (y >= offY && y < offY + 80) {
         return {
           index: i,
           startY: offY,
           nowY: y
         }
       }
-      offY += 60
+      offY += 80
     }
     return {
       index: -1,
@@ -94,13 +94,13 @@ class Movable extends Component {
     })
 
     if (moveDistance > 0 && index < this.state.list.length - 1 && !this.updateStatus) {
-      if (moveDistance >= 60) {
+      if (moveDistance >= 80) {
         this.updateStatus = true
 
         list.splice(index, 1)
         list.splice(++index, 0, this.state.selectedContent)
 
-        positionY += 60;
+        positionY += 80;
 
         this.setState({
           list: list,
@@ -115,13 +115,13 @@ class Movable extends Component {
     }
 
     if (moveDistance < 0 && index > 0 && !this.updateStatus) {
-      if (moveDistance < -60) {
+      if (moveDistance < -80) {
         this.updateStatus = true
 
         list.splice(index, 1)
         list.splice(--index, 0, this.state.selectedContent)
 
-        positionY -= 60;
+        positionY -= 80;
 
         this.setState({
           list: list,
@@ -156,7 +156,7 @@ class Movable extends Component {
 
   render() {
     return (
-      <View style='height: 300px; width: 100%; background: green;'
+      <View style='height: 100vh; width: 100%; background: green;'
         onTouchStart={this.touchStart}
         onTouchMove={this.touchMove}
         onTouchEnd={this.touchEnd}
@@ -165,7 +165,7 @@ class Movable extends Component {
           this.state.startMove && (
             <MovableArea style={{ position: 'absolute', height: '300px' }}>
               <MovableView y={this.state.movableViewPosition.y} direction="vertical">
-                <View style={{ height: '50px', width: '100px', background: 'yellow' }}>
+                <View style={{ height: '50px', width: '200px', background: 'yellow' }}>
                   {this.state.selectedContent.name}
                 </View>
               </MovableView>
@@ -175,7 +175,7 @@ class Movable extends Component {
         {
           this.state.list.map((it, index) => {
             return (
-              <View style={{ marginTop: index ? '10px' : 0, height: '50px', width: '100px', background: 'yellow' }}>
+              <View style={{ marginTop: index ? '30px' : 0, height: '50px', width: '200px', background: 'yellow' }}>
                 {it.name}
               </View>
             )
